@@ -3,12 +3,8 @@ source 'http://rubygems.org'
 # Base framework
 gem 'rails'
 
-# Database support (mysql2 for *nix, mysql for win32)
-if RUBY_PLATFORM !~ /(win|w)32/
-  gem 'mysql2'
-else
-  gem 'mysql'
-end
+# Database support
+gem 'mysql2'
 
 # Model annotations
 gem 'annotate'
@@ -34,6 +30,5 @@ group :test, :development do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'spork'
   gem 'launchy'
 end
