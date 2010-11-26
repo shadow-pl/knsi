@@ -1,31 +1,39 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+# Base framework
+gem 'rails'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Database support (mysql2 for *nix, mysql for win32)
+if RUBY_PLATFORM !~ /(win|w)32/
+  gem 'mysql2'
+else
+  gem 'mysql'
+end
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+# Model annotations
+gem 'annotate'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Authentication with Devise
+gem 'warden'
+gem 'devise'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# Authorization with CanCan
+gem 'cancan'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
+# Unicorn server for *nix systems
+if RUBY_PLATFORM !~ /(win|w)32/
+  gem 'unicorn'
+end
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+# Test enviroment setup
+group :test, :development do
+  gem 'autotest'
+  gem 'rspec'
+  gem "rspec-rails"
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'spork'
+  gem 'launchy'
+end
